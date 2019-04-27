@@ -75,7 +75,8 @@ session_start();
 
   <!-- iCheck 1.0.1 -->
   <script src="vistas/plugins/iCheck/icheck.min.js"></script>
-
+<!-- Number 1.0.1 -->
+<script src="vistas/plugins/JqueryNumber/jquery.number.min.js"></script>
 </head>
 
 <!--=====================================
@@ -115,6 +116,7 @@ CUERPO DOCUMENTO
          $_GET["ruta"] == "clientes" ||
          $_GET["ruta"] == "ventas" ||
          $_GET["ruta"] == "crear-venta" ||
+         $_GET["ruta"] == "editar-venta" ||
          $_GET["ruta"] == "reportes" ||
          $_GET["ruta"] == "salir"){
 
@@ -154,6 +156,6 @@ CUERPO DOCUMENTO
 <script src="vistas/js/categorias.js"></script>
 <script src="vistas/js/clientes.js"></script>
 <script src="vistas/js/productos.js"></script>
-
+<script src="vistas/js/ventas.js"></script>
 </body>
 </html>

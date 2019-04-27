@@ -17,6 +17,9 @@ class ControladorUsuarios{
 			   preg_match('/^[a-zA-Z0-9]+$/', $_POST["ingPassword"])){
 
 			   	$encriptar = crypt($_POST["ingPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+			//	$encriptar = sha1($_POST["ingPassword"]);
+			//	$encriptar = md5($_POST["ingPassword"]);
+			//$encriptar = "hola";
 
 				$tabla = "usuarios";//tabla de la base de datos
 
@@ -24,8 +27,10 @@ class ControladorUsuarios{
 				$valor = $_POST["ingUsuario"];
 
 				$respuesta = ModeloUsuarios::MdlMostrarUsuarios($tabla, $item, $valor);
+			//	var_dump ($respuesta["password"]);
+			//	$encriptar = password_verify($_POST['ingPassword'], $respuesta["password"]);
 				          //el item que evaluara el atributo usuario y el valor
-				//var_dump($respuesta);
+			//	var_dump($respuesta["password"]);
 				//si la respuesta en la columna usuario es igual como la contraseña entonces accedemos
 			
 				if($respuesta["usuario"] == $_POST["ingUsuario"] && $respuesta["password"] == $encriptar){
@@ -172,8 +177,11 @@ class ControladorUsuarios{
 
 				$tabla = "usuarios";//Accedo a la tabla Usuarios 
 
-				$encriptar = crypt($_POST["nuevoPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
-				//encriptamos la contraseña
+			//	$encriptar = crypt($_POST["nuevoPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+			//	$encriptar = sha1($_POST["nuevoPassword"]);
+				//	$encriptar = password_hash($_POST["nuevoPassword"], PASSWORD_BCRYPT);
+			//encriptamos la contraseña
+			$encriptar = md5($_POST["nuevoPassword"]);
 				$datos = array("nombre" => $_POST["nuevoNombre"], /*colo en un array los datos de viene por el metodo post */
 				"usuario" => $_POST["nuevoUsuario"], //le asigno los valores de nombre con lo que viene en el post
 			    "password" => $encriptar, //aun no trabaje la encriptacion
@@ -362,7 +370,8 @@ class ControladorUsuarios{
 					//se evalua la contraseña que viene por el metodo post
 								//y se guarda la contraseña	
 					$encriptar = crypt($_POST["editarPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
-
+				//	$encriptar = sha1($_POST["editarPassword"]);
+			//	$encriptar = password_hash($_POST["nuevoPassword"], PASSWORD_BCRYPT);
 					}else{
 
 						echo'<script>
