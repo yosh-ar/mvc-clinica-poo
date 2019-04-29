@@ -16,8 +16,9 @@ require_once "../modelos/categorias.modelo.php";
 
             $item = null;
             $valor = null;
+            $orden = "id";
 
-            $productos = ControladorProductos::ctrMostrarProductos($item,$valor);
+            $productos = ControladorProductos::ctrMostrarProductos($item,$valor, $orden);
 
             
 
@@ -80,7 +81,7 @@ require_once "../modelos/categorias.modelo.php";
                 }
         
                 $datosJson = substr($datosJson, 0, -1);
-                
+                 
                 $datosJson .= '] 
                 }';
             

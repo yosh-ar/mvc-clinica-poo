@@ -17,7 +17,7 @@ class AjaxProductos{
 
   	$item = "id_categoria";
   	$valor = $this->idCategoria;
-    $orden = null;
+    $orden = "id";
 
   	$respuesta = ControladorProductos::ctrMostrarProductos($item, $valor, $orden);
 
@@ -51,7 +51,7 @@ class AjaxProductos{
 
       $item = "descripcion";
       $valor = $this->nombreProducto;
-      $orden = null;
+      $orden = "id";
 
       $respuesta = ControladorProductos::ctrMostrarProductos($item, $valor, $orden);
 
@@ -61,7 +61,7 @@ class AjaxProductos{
 
       $item = "id";
       $valor = $this->idProducto;
-      $orden = null;
+      $orden = "id";
 
       $respuesta = ControladorProductos::ctrMostrarProductos($item, $valor, $orden);
 

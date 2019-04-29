@@ -8,11 +8,11 @@ class ModeloProductos{
         MOSTRAR PRODUCTOS
       ===============================================*/
 
-      static public function mdlMostrarProductos($tabla, $item, $valor){
+      static public function mdlMostrarProductos($tabla, $item, $valor, $orden){
         
         if ($item != null) {
             
-            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item ORDER BY id DESC");
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item ORDER BY $orden DESC");
 
             $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -21,7 +21,7 @@ class ModeloProductos{
             return $stmt ->fetch();
         }else{
 
-            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY $orden DESC");
 
             $stmt -> execute();
 

@@ -208,11 +208,13 @@ MODAL AGREGAR USUARIO
                   
                   <option value="">Selecionar perfil</option>
 
+                  <option value="Cajero">Cajero</option>
+
+                  <option value="Digitador">Digitador</option>
+
                   <option value="Administrador">Administrador</option>
-
-                  <option value="Especial">Especial</option>
-
-                  <option value="Vendedor">Vendedor</option>
+                  
+                  <option value="Gerente">Gerente</option>
 
                 </select>
 
