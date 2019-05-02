@@ -34,7 +34,7 @@
 
       <div class="box-body">
         
-       <table class="table table-bordered table-striped dt-responsive tablaProductos">
+       <table class="table table-bordered table-striped dt-responsive tablaProductos" width="100%">
          
         <thead>
          
@@ -58,8 +58,6 @@
        
 
        </table>
-
-       <input type="hidden" value="<?php echo $_SESSION['perfil']; ?>" class="perfilUsuario">
 
       </div>
 
@@ -180,13 +178,13 @@ MODAL AGREGAR PRODUCTO
 
              <div class="form-group row">
 
-                <div class="col-xs-6">
+                <div class="col-xs-12 col-sm-6">
                 
                   <div class="input-group">
                   
                     <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span> 
 
-                    <input type="number" class="form-control input-lg" id="nuevoPrecioCompra" name="nuevoPrecioCompra" min="0" placeholder="Precio de compra" required>
+                    <input type="number" class="form-control input-lg" id="nuevoPrecioCompra" name="nuevoPrecioCompra" step="any" min="0" placeholder="Precio de compra" required>
 
                   </div>
 
@@ -194,15 +192,13 @@ MODAL AGREGAR PRODUCTO
 
                 <!-- ENTRADA PARA PRECIO VENTA -->
 
-                <div class="col-xs-6">
+                <div class="col-xs-12 col-sm-6">
                 
                   <div class="input-group">
                   
                     <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span> 
 
-                    <input type="number" class="form-control input-lg" 
-                    id="nuevoPrecioVenta" name="nuevoPrecioVenta" min="0"
-                     placeholder="Precio de venta" required>
+                    <input type="number" class="form-control input-lg" id="nuevoPrecioVenta" name="nuevoPrecioVenta" step="any" min="0" placeholder="Precio de venta" required>
 
                   </div>
                 
@@ -384,13 +380,13 @@ MODAL EDITAR PRODUCTO
 
              <div class="form-group row">
 
-                <div class="col-xs-6">
+                <div class="col-xs-12 col-sm-6">
                 
                   <div class="input-group">
                   
                     <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span> 
 
-                    <input type="number" class="form-control input-lg" id="editarPrecioCompra" name="editarPrecioCompra" min="0" required>
+                    <input type="number" class="form-control input-lg" id="editarPrecioCompra" name="editarPrecioCompra" step="any" min="0" required>
 
                   </div>
 
@@ -398,13 +394,13 @@ MODAL EDITAR PRODUCTO
 
                 <!-- ENTRADA PARA PRECIO VENTA -->
 
-                <div class="col-xs-6">
+                <div class="col-xs-12 col-sm-6">
                 
                   <div class="input-group">
                   
                     <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span> 
 
-                    <input type="number" class="form-control input-lg" id="editarPrecioVenta" name="editarPrecioVenta" min="0" readonly required>
+                    <input type="number" class="form-control input-lg" id="editarPrecioVenta" name="editarPrecioVenta" step="any" min="0" readonly required>
 
                   </div>
                 
@@ -494,7 +490,7 @@ MODAL EDITAR PRODUCTO
 <?php
 
   $eliminarProducto = new ControladorProductos();
- $eliminarProducto -> ctrEliminarProducto();
+  $eliminarProducto -> ctrEliminarProducto();
 
 ?>      
 

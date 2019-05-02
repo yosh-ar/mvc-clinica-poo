@@ -128,6 +128,9 @@ CUERPO DOCUMENTO
     =============================================*/
 
     if(isset($_GET["ruta"])){ //rutas ammigables
+      
+      if($_SESSION["perfil"]=="Gerente")
+      {
 
       if($_GET["ruta"] == "inicio" ||
          $_GET["ruta"] == "usuarios" ||
@@ -141,13 +144,53 @@ CUERPO DOCUMENTO
          $_GET["ruta"] == "salir"){
 
         include "modulos/".$_GET["ruta"].".php";
+         } else{
 
-      }else{
-
-        include "modulos/404.php";
-
+          include "modulos/404.php";
+  
+        }
       }
+     elseif($_SESSION["perfil"]=="Digitador"){
+        if($_GET["ruta"] == "inicio" ||
+        $_GET["ruta"] == "usuarios" ||
+        $_GET["ruta"] == "categorias" ||
+        $_GET["ruta"] == "productos" ||
+        $_GET["ruta"] == "clientes" ||
+        $_GET["ruta"] == "salir"){
 
+       include "modulos/".$_GET["ruta"].".php";
+        } else{
+
+         include "modulos/404.php";
+ 
+       }
+      }
+      elseif($_SESSION["perfil"]=="Administrador"){
+        if($_GET["ruta"] == "inicio" ||
+        $_GET["ruta"] == "reportes" ||
+        $_GET["ruta"] == "salir"){
+
+       include "modulos/".$_GET["ruta"].".php";
+        } else{
+
+         include "modulos/404.php";
+ 
+       }
+      }
+      elseif($_SESSION["perfil"]=="Cajero"){
+        if($_GET["ruta"] == "inicio" ||
+        $_GET["ruta"] == "ventas" ||
+        $_GET["ruta"] == "crear-venta" ||
+        $_GET["ruta"] == "editar-venta" ||
+        $_GET["ruta"] == "salir"){
+
+       include "modulos/".$_GET["ruta"].".php";
+        } else{
+
+         include "modulos/404.php";
+ 
+       }
+      }
     }else{
 
       include "modulos/inicio.php";

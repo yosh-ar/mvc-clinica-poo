@@ -3,8 +3,10 @@
 	 <section class="sidebar">
 
 		<ul class="sidebar-menu">
-
-			<li class="active">
+		<?php 
+				if($_SESSION["perfil"]=="Gerente" || $_SESSION["perfil"]=="Digitador"){
+			
+		echo'<li class="active">
 
 				<a href="inicio">
 
@@ -26,9 +28,11 @@
 
 			</li>
 
-			<li>
+			<li>';
+	}
 
-				<a href="categorias">
+	if($_SESSION["perfil"]=="Gerente" || $_SESSION["perfil"]=="Digitador"){
+		echo	'<a href="categorias">
 
 					<i class="fa fa-th"></i>
 					<span>Categorías</span>
@@ -57,9 +61,11 @@
 
 				</a>
 
-			</li>
+			</li>';
+	}
 
-			<li class="treeview">
+	if($_SESSION["perfil"]=="Gerente" || $_SESSION["perfil"]=="Cajero"){	
+	echo '<li class="treeview">
 
 				<a href="#">
 
@@ -97,9 +103,11 @@
 
 						</a>
 
-					</li>
+					</li>';
+	}
 
-					<li>
+	if($_SESSION["perfil"]=="Gerente" || $_SESSION["perfil"]=="Administrador"){
+				echo'	<li>
 
 						<a href="reportes">
 							
@@ -108,8 +116,8 @@
 
 						</a>
 
-					</li>
-
+					</li>';
+	}?>
 				</ul>
 
 			</li>
