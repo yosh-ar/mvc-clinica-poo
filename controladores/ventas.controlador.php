@@ -495,8 +495,9 @@ class ControladorVentas{
 			header("Pragma: public"); 
 			header('Content-Disposition:; filename="'.$Name.'"');
 			header("Content-Transfer-Encoding: binary");
-
-			echo utf8_decode("<table border='0'> 
+			//creamos la tabla del archivo de excel con el dato table
+			//utf8 decode para poder trabajar ccon tildez
+			echo utf8_decode("<table border='0'>
 
 					<tr> 
 					<td style='font-weight:bold; border:1px solid #eee;'>CÓDIGO</td> 
@@ -513,7 +514,7 @@ class ControladorVentas{
 
 			foreach ($ventas as $row => $item){
 
-				$cliente = ControladorClientes::ctrMostrarClientes("id", $item["id_cliente"]);
+				$cliente = ControllerClientes::ControladorMostrarClientes("id", $item["id_cliente"]);
 				$vendedor = ControladorUsuarios::ctrMostrarUsuarios("id", $item["id_vendedor"]);
 
 			 echo utf8_decode("<tr>

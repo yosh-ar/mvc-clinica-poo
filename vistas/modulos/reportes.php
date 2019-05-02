@@ -53,19 +53,19 @@
 
         <?php
 
-        // if(isset($_GET["fechaInicial"])){
+         if(isset($_GET["fechaInicial"])){
 
-        //   echo '<a href="vistas/modulos/descargar-reporte.php?reporte=reporte&fechaInicial='.$_GET["fechaInicial"].'&fechaFinal='.$_GET["fechaFinal"].'">';
+           echo '<a href="vistas/modulos/descargar-reporte.php?reporte=reporte&fechaInicial='.$_GET["fechaInicial"].'&fechaFinal='.$_GET["fechaFinal"].'">';
 
-        // }else{
+         }else{
 
-        //    echo '<a href="vistas/modulos/descargar-reporte.php?reporte=reporte">';
+            echo '<a href="vistas/modulos/descargar-reporte.php?reporte=reporte">';
 
-        // }         
+         }         
 
         ?>
            
-           <!-- <button class="btn btn-success" style="margin-top:5px">Descargar reporte en Excel</button> -->
+            <button class="btn btn-success" style="margin-top:5px">Descargar reporte en Excel</button> 
 
           </a>
 
