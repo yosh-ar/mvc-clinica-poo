@@ -6,66 +6,60 @@ require_once "../modelos/productos.modelo.php";
 require_once "../controladores/categorias.controlador.php";
 require_once "../modelos/categorias.modelo.php";
 
+require_once "../controladores/proveedores.controlador.php";
+require_once "../modelos/proveedores.modelo.php";
     class TablaProductos{
  
         /*=============================================
         Mostrar la tabla de productos
         =============================================*/
-
         public function mostrarTablaProductos(){
-
             $item = null;
             $valor = null;
             $orden = "id";
-
             $productos = ControladorProductos::ctrMostrarProductos($item,$valor, $orden);
-
             
-
             $datosJson = '{
                 "data": [';
-
                 for ($i = 0; $i <count($productos); $i++){
                 
                      /*=============================================
                      traemos la imagen
                     =============================================*/
-
                     $imagen = "<img src ='".$productos[$i]["imagen"]."' width='40px'>";
                     
                      /*=============================================
                     traemos la categoria
                     =============================================*/
-
                     $item = "id";   
                     $valor = $productos[$i]["id_categoria"];
-
                     $categorias = ControladorCategorias::ControllerMostrarCategorias($item,$valor);
                     
-
                      /*=============================================
                     stock
                     =============================================*/
-
                     if($productos[$i]["stock"] <= 10){
                         
                         $stock = "<button class='btn btn-danger'>".$productos[$i]["stock"]."</button>";
-
                     }else if($productos[$i]["stock"] > 11 && $productos[$i]["stock"] <= 15){
-
                         $stock = "<button class='btn btn-warning'>".$productos[$i]["stock"]."</button>";
                         
                     }else{
-
                     $stock = "<button class='btn btn-success'>".$productos[$i]["stock"]."</button>";
                     
                     }
+                      /*=============================================
+                    traemos proveedor
+                    =============================================*/
+
+                    $item = "id";   
+                    $valor = $productos[$i]["id_proveedor"];
+
+                    $proveedores = ControladorProveedores::ctrMostrarProveedores($item,$valor);
                      /*=============================================
                     traemos los botones
                     =============================================*/
                     $botones = "<div class='btn-group'><button class='btn btn-warning btnEditarProducto' idProducto='".$productos[$i]["id"]."' data-toggle='modal' data-target='#modalEditarProducto'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarProducto' idProducto='".$productos[$i]["id"]."' codigo='".$productos[$i]["codigo"]."' imagen='".$productos[$i]["imagen"]."'><i class='fa fa-times'></i></button></div>";
-
-
                     $datosJson .='[
                         "'.($i+1).'",
                         "'.$imagen.'",
@@ -73,6 +67,7 @@ require_once "../modelos/categorias.modelo.php";
                         "'.$productos[$i]["descripcion"].'",
                         "'.$categorias["categoria"].'",
                         "'.$stock.'",
+                        "'.$proveedores["nombre"].'",
                         "'.$productos[$i]["precio_compra"].'",
                         "'.$productos[$i]["precio_venta"].'",
                         "'.$productos[$i]["fecha"].'",
@@ -88,7 +83,6 @@ require_once "../modelos/categorias.modelo.php";
             
             
             echo $datosJson; 
-
         }
     }
 /*=============================================

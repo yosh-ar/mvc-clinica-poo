@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-03-2019 a las 05:19:04
--- Versión del servidor: 10.1.36-MariaDB
--- Versión de PHP: 7.2.11
+-- Tiempo de generación: 03-05-2019 a las 02:24:48
+-- Versión del servidor: 10.1.34-MariaDB
+-- Versión de PHP: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -80,9 +80,41 @@ CREATE TABLE `productos` (
   `stock` int(11) NOT NULL,
   `precio_compra` float NOT NULL,
   `precio_venta` float NOT NULL,
+  `id_proveedor` int(11) DEFAULT NULL,
   `ventas` int(11) NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `productos`
+--
+
+INSERT INTO `productos` (`id`, `id_categoria`, `codigo`, `descripcion`, `imagen`, `stock`, `precio_compra`, `precio_venta`, `id_proveedor`, `ventas`, `fecha`) VALUES
+(2, 1, '101', 'ibuprofeno 400 mg', 'vistas/img/productos/101/245.jpg', 0, 1, 1.4, 1, 0, '2019-05-02 23:54:07'),
+(3, 3, '301', 'Suero Bebible 1 litro', 'vistas/img/productos/default/anonymous.png', 20, 12, 16.8, 1, 0, '2019-05-03 00:18:47'),
+(5, 1, '102', 'acetaminofen', 'vistas/img/productos/default/anonymous.png', 20, 1.25, 1.75, 1, 0, '2019-05-03 00:17:46');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `proveedores`
+--
+
+CREATE TABLE `proveedores` (
+  `id` int(11) NOT NULL,
+  `nombre` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `telefono` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `direccion` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `proveedores`
+--
+
+INSERT INTO `proveedores` (`id`, `nombre`, `telefono`, `direccion`) VALUES
+(1, 'Genoma Lab', '123456785', 'Guatemala zona 18 A-23d'),
+(2, 'Kevin', '23654785', 'xela'),
+(3, 'Rodrigo', '85632145', 'mazatenango');
 
 -- --------------------------------------------------------
 
@@ -107,7 +139,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `usuario`, `password`, `perfil`, `foto`, `estado`, `ultimo_login`, `fecha`) VALUES
-(60, 'Josue ', 'josue', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'Especial', 'vistas/img/usuarios/josue/449.jpg', 1, '2019-03-30 16:23:00', '2019-03-30 22:55:57');
+(60, 'Josue ', 'josue', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'Especial', 'vistas/img/usuarios/josue/449.jpg', 1, '2019-05-02 15:36:23', '2019-05-02 21:36:23');
 
 -- --------------------------------------------------------
 
@@ -148,6 +180,14 @@ ALTER TABLE `clientes`
 -- Indices de la tabla `productos`
 --
 ALTER TABLE `productos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_categoria` (`id_categoria`),
+  ADD KEY `productos_ibfk_1` (`id_proveedor`);
+
+--
+-- Indices de la tabla `proveedores`
+--
+ALTER TABLE `proveedores`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -182,7 +222,13 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `proveedores`
+--
+ALTER TABLE `proveedores`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -195,6 +241,16 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `ventas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `productos`
+--
+ALTER TABLE `productos`
+  ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`id_proveedor`) REFERENCES `proveedores` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -46,6 +46,7 @@
            <th>Descripción</th>
            <th>Categoría</th>
            <th>Stock</th>
+           <th>Proveedores</th>
            <th>Precio de compra</th>
            <th>Precio de venta</th>
            <th>Agregado</th>
@@ -113,17 +114,13 @@ MODAL AGREGAR PRODUCTO
                   <option value="">Selecionar categoría</option>
 
                   <?php
-
                   $item = null;
                   $valor = null;
-
                   $categorias = ControladorCategorias::ControllerMostrarCategorias($item, $valor);
-
                   foreach ($categorias as $key => $value) {
                     
                     echo '<option value="'.$value["id"].'">'.$value["categoria"].'</option>';
                   }
-
                   ?>
   
                 </select>
@@ -173,6 +170,39 @@ MODAL AGREGAR PRODUCTO
               </div>
 
             </div>
+            
+                  <!-- ENTRADA PARA SELECCIONAR PROVEEDOR -->
+
+            <div class="form-group">
+              
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-th"></i></span> 
+
+                <select class="form-control input-lg" id="nuevoProveedor" name="nuevoProveedor" required>
+                  
+                  <option value="">Selecionar proveedor</option>
+
+                  <?php
+
+                  $item = null;
+                  $valor = null;
+
+                  $proveedores = ControladorProveedores::ctrMostrarProveedores($item, $valor);
+
+                  foreach ($proveedores as $key => $value) {
+                    
+                    echo '<option value="'.$value["id"].'">'.$value["nombre"].'</option>';
+                  }
+
+                  ?>
+  
+                </select>
+
+              </div>
+
+            </div>
+
 
              <!-- ENTRADA PARA PRECIO COMPRA -->
 
@@ -189,7 +219,7 @@ MODAL AGREGAR PRODUCTO
                   </div>
 
                 </div>
-
+                       
                 <!-- ENTRADA PARA PRECIO VENTA -->
 
                 <div class="col-xs-12 col-sm-6">
@@ -271,10 +301,8 @@ MODAL AGREGAR PRODUCTO
       </form>
 
         <?php
-
           $crearProducto = new ControladorProductos();
           $crearProducto -> ctrCrearProducto();
-
         ?>  
 
     </div>
@@ -371,6 +399,38 @@ MODAL EDITAR PRODUCTO
                 <span class="input-group-addon"><i class="fa fa-check"></i></span> 
 
                 <input type="number" class="form-control input-lg" id="editarStock" name="editarStock" min="0" required>
+
+              </div>
+
+            </div>
+              <!-- ENTRADA PARA SELECCIONAR PROVEEDOR -->
+
+              <div class="form-group">
+              
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-th"></i></span> 
+
+                <select class="form-control input-lg"  name="editarProveedor" >
+                  
+                  <option id="editarProveedor"></option>
+                  <?php
+
+                  $item = null;
+                  $valor = null;
+
+                  $proveedores = ControladorProveedores::ctrMostrarProveedores($item, $valor);
+
+                  foreach ($proveedores as $key => $value) {
+                    
+                    echo '<option value="'.$value["id"].'">'.$value["nombre"].'</option>';
+                  }
+
+                  ?>
+  
+            
+
+                </select>
 
               </div>
 
@@ -475,10 +535,8 @@ MODAL EDITAR PRODUCTO
       </form>
 
         <?php
-
           $editarProducto = new ControladorProductos();
           $editarProducto -> ctrEditarProducto();
-
         ?>      
 
     </div>
@@ -488,11 +546,6 @@ MODAL EDITAR PRODUCTO
 </div>
 
 <?php
-
   $eliminarProducto = new ControladorProductos();
   $eliminarProducto -> ctrEliminarProducto();
-
-?>      
-
-
-
+?>  

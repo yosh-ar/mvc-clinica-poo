@@ -217,7 +217,22 @@ $(".tablaProductos tbody").on("click", "button.btnEditarProducto", function(){
       processData: false,
       dataType:"json",
       success:function(respuesta){
-          
+		var datosProveedores =new FormData();
+		datosProveedores.append("idProveedor", respuesta["id_proveedor"]);
+	   $.ajax({
+		   url:"ajax/proveedores.ajax.php",
+		   method: "POST",
+		   data: datosProveedores,
+		   cache: false,
+		   contentType: false,
+		   processData: false,
+		   dataType:"json",
+		   success:function(respuesta){
+			   
+			   $("#editarProveedor").val(respuesta["nombre"]);
+			   $("#editarProveedor").html(respuesta["nombre"]);
+		   }
+	   }) 
           var datosCategoria = new FormData();
           datosCategoria.append("idCategoria",respuesta["id_categoria"]);
 
@@ -294,4 +309,3 @@ $(".tablaProductos tbody").on("click", "button.btnEliminarProducto", function(){
 	})
 
 })
-	

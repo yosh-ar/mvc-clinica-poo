@@ -61,6 +61,16 @@
 
 				</a>
 
+			</li>
+			<li>
+
+				<a href="proveedores">
+
+					<i class="fa fa-users"></i>
+					<span>proveedores</span>
+
+				</a>
+
 			</li>';
 	}
 
